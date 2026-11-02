@@ -1,0 +1,181 @@
+/*
+ * DF EventoS — identidade visual
+ * Cores da bandeira do DF (verde, amarelo-ouro, branco) + a Brasília modernista:
+ * títulos condensados como placas de rua e azulejos geométricos inspirados em Athos Bulcão.
+ */
+:root {
+  --verde: #006c35; /* verde da bandeira */
+  --verde-noite: #0d3b22; /* textos fortes, rodapé */
+  --ouro: #ffc72c; /* amarelo-ouro da bandeira: usar sobre verde ou escuro, nunca como texto no branco */
+  --ouro-texto: #8a6200; /* tom de ouro legível sobre branco */
+  --concreto: #eceee9; /* fundo de painéis, como o concreto aparente */
+  --branco: #ffffff;
+  --texto: #1d2a22;
+  --texto-suave: #55635a;
+  --linha: #d5dad3;
+  --erro: #a61b1b;
+
+  /* nomes antigos usados pelos componentes */
+  --primaria: var(--verde);
+  --primaria-escura: var(--verde-noite);
+  --amarelo: var(--ouro);
+  --amarelo-escuro: var(--ouro-texto);
+  --fundo: var(--branco);
+  --superficie: var(--branco);
+  --borda: var(--linha);
+
+  --fonte-titulo: 'Saira Condensed', 'Arial Narrow', sans-serif;
+  --fonte-texto: 'Public Sans', system-ui, sans-serif;
+  --raio: 4px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--branco);
+  color: var(--texto);
+  font-family: var(--fonte-texto);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-titulo);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  color: var(--verde-noite);
+}
+
+h1 { font-size: clamp(2.1rem, 5vw, 3rem); }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.3rem; }
+
+a {
+  color: var(--verde);
+  text-underline-offset: 0.18em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ouro-texto);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* ---------- Botões ---------- */
+.botao,
+.botao-primario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.7rem 1.15rem;
+  border-radius: var(--raio);
+  border: 2px solid var(--verde);
+  background: var(--branco);
+  color: var(--verde);
+  text-decoration: none;
+  cursor: pointer;
+  line-height: 1.2;
+
+  &:hover { background: #f1f7f3; }
+  &:disabled { opacity: 0.55; cursor: not-allowed; }
+}
+
+.botao-primario {
+  width: 100%;
+  background: var(--verde);
+  color: var(--branco);
+
+  &:hover { background: #005a2c; }
+}
+
+.botao.cheio { background: var(--verde); color: var(--branco); }
+.botao.cheio:hover { background: #005a2c; }
+.botao.perigo { border-color: var(--erro); color: var(--erro); }
+.botao.perigo.cheio { background: var(--erro); color: var(--branco); }
+
+.link-perigo {
+  font: inherit;
+  font-weight: 600;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--erro);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+/* ---------- Formulários (Entrar, Cadastro, Divulgar evento) ---------- */
+.cartao-form {
+  max-width: 460px;
+  margin: 3rem auto;
+
+  h1 { margin: 0 0 0.4rem; }
+  .subtitulo { margin: 0 0 1.75rem; color: var(--texto-suave); max-width: 52ch; }
+  .rodape-form { margin: 1.5rem 0 0; color: var(--texto-suave); }
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1.15rem;
+
+  label { font-weight: 700; font-size: 0.95rem; }
+
+  input, select, textarea {
+    font: inherit;
+    padding: 0.7rem 0.85rem;
+    border: 1px solid #b9c1b8;
+    border-radius: var(--raio);
+    background: var(--branco);
+    color: var(--texto);
+  }
+
+  input:focus, select:focus, textarea:focus { border-color: var(--verde); outline: 2px solid var(--verde); outline-offset: 0; }
+
+  &.invalido input, &.invalido select, &.invalido textarea { border-color: var(--erro); }
+  .dica { font-size: 0.85rem; color: var(--texto-suave); }
+  .erro-campo { font-size: 0.85rem; color: var(--erro); font-weight: 600; }
+}
+
+.mensagem {
+  padding: 0.8rem 1rem;
+  border-left: 4px solid;
+  margin-bottom: 1.25rem;
+
+  &.erro { background: #fbeeee; color: var(--erro); }
+  &.sucesso { background: #ebf5ef; color: var(--verde-noite); border-color: var(--verde); }
+}
+
+/* Texto só para leitores de tela (acessibilidade) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.conteudo {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}

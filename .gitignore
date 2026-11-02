@@ -1,0 +1,18 @@
+# Segredos
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Vercel
+.vercel/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Editores
+.idea/
+.vscode/
